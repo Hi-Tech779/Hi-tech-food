@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gaming Hub — Play simple and refreshing games, compete for top scores and join our community.">
     <title>Nexus | Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -77,6 +78,7 @@
             overflow: hidden;
         }
 
+        /* Use a valid SVG data URL for a faint grid/pattern */
         .hero::before {
             content: '';
             position: absolute;
@@ -84,9 +86,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="none" width="200" height="200"/><path fill="%23ff0000" opacity="0.2" d="M0,100 L200,100 M100,0 L100,200"/></svg>') 0 0 repeat;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><rect fill='none' width='200' height='200'/><g fill='%23ff0000' opacity='0.06'><circle cx='20' cy='20' r='2'/><circle cx='60' cy='20' r='2'/><circle cx='100' cy='20' r='2'/><circle cx='140' cy='20' r='2'/></g></svg>");
+            background-repeat: repeat;
             background-size: 300px 300px;
             animation: gridMove 20s infinite linear;
+            pointer-events: none;
+            z-index: 0;
         }
 
         @keyframes gridMove {
@@ -102,11 +107,18 @@
             color: #fff;
             text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .hero h1 span {
             color: #ff0000;
+        }
+
+        .hero h2 {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 30px;
+            z-index: 2;
         }
 
         .hero p {
@@ -132,7 +144,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         .cta-button:hover {
@@ -146,6 +158,7 @@
             background: #0f0f0f;
             border-top: 1px solid #ff0000;
             border-bottom: 1px solid #ff0000;
+            position: relative;
         }
 
         .text-content {
@@ -195,6 +208,7 @@
         /* Games Section */
         .games-section {
             padding: 100px 0;
+            position: relative;
         }
 
         .section-title {
@@ -300,6 +314,7 @@
             background: #0a0a0a;
             padding: 60px 0 30px;
             border-top: 2px solid #ff0000;
+            position: relative;
         }
 
         .footer-content {
@@ -426,9 +441,11 @@
             }
         }
     </style>
+
+    <!-- Enhancements CSS (kept in separate style tag for clarity) -->
     <style>
-    /* ENHANCEMENTS CSS */
-    
+    /* ENHANCEMENTS CSS - kept mostly as you had it with some adjustments */
+
     /* Improved header with glass morphism effect */
     header {
         background: rgba(26, 0, 0, 0.85) !important;
@@ -439,13 +456,8 @@
         z-index: 1000;
         box-shadow: 0 5px 25px rgba(255, 0, 0, 0.15);
     }
-    
+
     /* Enhanced hero section with particle effect */
-    .hero {
-        position: relative;
-        overflow: hidden;
-    }
-    
     .particles {
         position: absolute;
         top: 0;
@@ -453,15 +465,16 @@
         width: 100%;
         height: 100%;
         pointer-events: none;
+        z-index: 1;
     }
-    
+
     .particle {
         position: absolute;
         background: rgba(255, 0, 0, 0.5);
         border-radius: 50%;
         animation: float 15s infinite linear;
     }
-    
+
     @keyframes float {
         0% {
             transform: translateY(0) translateX(0) rotate(0deg);
@@ -472,13 +485,13 @@
             opacity: 0;
         }
     }
-    
+
     /* Glitch effect on hero text */
     .hero h1 {
         position: relative;
         animation: glitch-effect 5s infinite;
     }
-    
+
     .hero h1::before,
     .hero h1::after {
         content: attr(data-text);
@@ -487,24 +500,27 @@
         left: 0;
         width: 100%;
         height: 100%;
+        pointer-events: none;
     }
-    
+
     .hero h1::before {
         animation: glitch 2s infinite;
         clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
         transform: translate(-2px, -2px);
         color: #00ffff;
         opacity: 0.8;
+        z-index: 2;
     }
-    
+
     .hero h1::after {
         animation: glitch 2.5s infinite;
         clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
         transform: translate(2px, 2px);
         color: #ff00ff;
         opacity: 0.8;
+        z-index: 2;
     }
-    
+
     @keyframes glitch {
         0% { transform: translate(0); }
         20% { transform: translate(-2px, 2px); }
@@ -513,16 +529,16 @@
         80% { transform: translate(2px, -2px); }
         100% { transform: translate(0); }
     }
-    
+
     /* Enhanced CTA button with neon glow */
     .cta-button {
         position: relative;
         overflow: hidden;
-        z-index: 1;
+        z-index: 2;
         border: 2px solid transparent;
         background-clip: padding-box;
     }
-    
+
     .cta-button::before {
         content: '';
         position: absolute;
@@ -535,7 +551,7 @@
         border-radius: 30px;
         animation: glowing 1.5s infinite;
     }
-    
+
     .cta-button::after {
         content: '';
         position: absolute;
@@ -547,13 +563,13 @@
         border-radius: 28px;
         z-index: -1;
     }
-    
+
     @keyframes glowing {
         0% { filter: blur(5px); opacity: 0.8; }
         50% { filter: blur(15px); opacity: 1; }
         100% { filter: blur(5px); opacity: 0.8; }
     }
-    
+
     /* Enhanced text items with holographic effect */
     .text-item {
         position: relative;
@@ -563,7 +579,7 @@
         border-left: 4px solid #ff0000;
         transition: all 0.4s ease;
     }
-    
+
     .text-item::before {
         content: '';
         position: absolute;
@@ -579,29 +595,29 @@
         );
         transition: 0.5s;
     }
-    
+
     .text-item:hover::before {
         left: 100%;
     }
-    
+
     /* Enhanced game cards with 3D tilt effect */
     .game-card {
         transform-style: preserve-3d;
         perspective: 1000px;
         transition: transform 0.5s ease, box-shadow 0.5s ease;
     }
-    
+
     .game-card:hover {
         transform: translateY(-15px) rotateX(5deg) rotateY(-5deg);
         box-shadow: 0 25px 40px rgba(255, 0, 0, 0.25);
     }
-    
+
     /* Improved game image with loading shimmer */
     .game-image {
         position: relative;
         overflow: hidden;
     }
-    
+
     .game-image::before {
         content: '';
         position: absolute;
@@ -618,32 +634,32 @@
         transform: skewX(-25deg);
         animation: shimmer 2s infinite;
     }
-    
+
     @keyframes shimmer {
         0% { left: -150%; }
         100% { left: 150%; }
     }
-    
+
     /* Enhanced rating stars */
     .game-rating {
         position: relative;
     }
-    
+
     .game-rating i {
         text-shadow: 0 0 5px rgba(255, 204, 0, 0.7);
         transition: transform 0.3s ease;
     }
-    
+
     .game-rating:hover i {
         transform: scale(1.2);
     }
-    
+
     /* Improved footer with circuit board pattern */
     footer {
         position: relative;
         overflow: hidden;
     }
-    
+
     footer::before {
         content: '';
         position: absolute;
@@ -654,48 +670,47 @@
         background: linear-gradient(90deg, #ff0000, #b30000, #ff0000);
         animation: circuit-line 3s infinite linear;
     }
-    
+
     @keyframes circuit-line {
         0% { background-position: 0 0; }
         100% { background-position: 100px 0; }
     }
-    
-    /* Additional decorative elements */
+
+    /* Corner decorations & scroll progress */
     .corner-decoration {
         position: absolute;
         width: 30px;
         height: 30px;
     }
-    
+
     .corner-top-left {
         top: 20px;
         left: 20px;
         border-top: 2px solid #ff0000;
         border-left: 2px solid #ff0000;
     }
-    
+
     .corner-top-right {
         top: 20px;
         right: 20px;
         border-top: 2px solid #ff0000;
         border-right: 2px solid #ff0000;
     }
-    
+
     .corner-bottom-left {
         bottom: 20px;
         left: 20px;
         border-bottom: 2px solid #ff0000;
         border-left: 2px solid #ff0000;
     }
-    
+
     .corner-bottom-right {
         bottom: 20px;
         right: 20px;
         border-bottom: 2px solid #ff0000;
         border-right: 2px solid #ff0000;
     }
-    
-    /* Scroll progress indicator */
+
     .scroll-progress {
         position: fixed;
         top: 0;
@@ -706,288 +721,251 @@
         z-index: 1001;
         transition: width 0.2s ease;
     }
-    
-    /* Enhanced section titles */
-    .section-title {
-        position: relative;
-        display: inline-block;
-        padding: 0 20px;
+
+    /* Snow effect container */
+    .snow-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 100;
+        overflow: hidden;
     }
-    
-    .section-title::before,
-    .section-title::after {
-        content: '';
+
+    .snowflake {
         position: absolute;
-        top: 50%;
-        width: 50px;
-        height: 2px;
-        background: #ff0000;
-        transform: translateY(-50%);
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: fall linear infinite;
     }
-    
-    .section-title::before {
-        left: -60px;
+
+    @keyframes fall {
+        to { transform: translateY(100vh); }
     }
-    
-    .section-title::after {
-        right: -60px;
-    }
-    
-    /* Responsive adjustments for new effects */
+
+    /* Small responsive tweaks for the new effects */
     @media (max-width: 768px) {
         .section-title::before,
         .section-title::after {
             width: 30px;
         }
-        
+
         .section-title::before {
             left: -40px;
         }
-        
+
         .section-title::after {
             right: -40px;
         }
-        
+
         .hero h1::before,
         .hero h1::after {
             display: none;
         }
     }
-    /* Snow effect container */
-.snow-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 100;
-    overflow: hidden;
-}
+    </style>
 
-/* Individual snowflake styling */
-.snowflake {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: fall linear infinite;
-}
-
-/* Snowflake falling animation */
-@keyframes fall {
-    to {
-        transform: translateY(100vh);
-    }
-}
-</style>
-
-<script>
-    // JavaScript to enhance the page with dynamic effects
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Create particles for hero section
-        createParticles();
-        
-        // Add glitch effect to hero text
-        const heroTitle = document.querySelector('.hero h1');
-        heroTitle.setAttribute('data-text', heroTitle.textContent);
-        
-        // Add scroll progress indicator
+        // Defensive checks to avoid runtime errors if elements are missing
+        const heroEl = document.querySelector('.hero');
+        if (heroEl) {
+            createParticles(heroEl);
+            const heroTitle = heroEl.querySelector('h1');
+            if (heroTitle) {
+                heroTitle.setAttribute('data-text', heroTitle.textContent);
+            }
+        }
+
         createScrollProgress();
-        
-        // Add corner decorations to sections
         addCornerDecorations();
-        
-        // Initialize tilt effect on game cards
         initTiltEffect();
     });
-    
-    function createParticles() {
+
+    // Create particles for hero section (accepts container)
+    function createParticles(container) {
+        if (!container) return;
         const particlesContainer = document.createElement('div');
         particlesContainer.classList.add('particles');
-        document.querySelector('.hero').appendChild(particlesContainer);
-        
-        for (let i = 0; i < 50; i++) {
+        container.appendChild(particlesContainer);
+
+        // moderate particle count for performance
+        const PARTICLE_COUNT = 30;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
-            
-            // Random properties
+
             const size = Math.random() * 5 + 2;
             const posX = Math.random() * 100;
             const posY = Math.random() * 100;
             const delay = Math.random() * 15;
             const duration = Math.random() * 10 + 15;
-            
+
             particle.style.width = `${size}px`;
             particle.style.height = `${size}px`;
             particle.style.left = `${posX}%`;
             particle.style.top = `${posY}%`;
+            particle.style.opacity = `${Math.random() * 0.6 + 0.2}`;
             particle.style.animationDelay = `${delay}s`;
             particle.style.animationDuration = `${duration}s`;
-            
+
             particlesContainer.appendChild(particle);
         }
     }
-    
+
     function createScrollProgress() {
         const progressBar = document.createElement('div');
         progressBar.classList.add('scroll-progress');
         document.body.appendChild(progressBar);
-        
+
         window.addEventListener('scroll', () => {
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
+            const doc = document.documentElement;
+            const windowHeight = doc.scrollHeight - doc.clientHeight;
+            const scrolled = windowHeight > 0 ? (window.scrollY / windowHeight) * 100 : 0;
             progressBar.style.width = `${scrolled}%`;
         });
     }
-    
+
     function addCornerDecorations() {
         const sections = document.querySelectorAll('.text-interface, .games-section');
-        
+
         sections.forEach(section => {
-            for (const corner of ['top-left', 'top-right', 'bottom-left', 'bottom-right']) {
+            // avoid adding decorations multiple times
+            if (section.querySelector('.corner-top-left')) return;
+            ['top-left','top-right','bottom-left','bottom-right'].forEach(corner => {
                 const decor = document.createElement('div');
                 decor.classList.add('corner-decoration', `corner-${corner}`);
                 section.appendChild(decor);
-            }
+            });
         });
     }
-    
+
     function initTiltEffect() {
         const cards = document.querySelectorAll('.game-card');
-        
+
         cards.forEach(card => {
             card.addEventListener('mousemove', function(e) {
                 const rect = this.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
+
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                
+
                 const rotateY = (x - centerX) / 25;
                 const rotateX = (centerY - y) / 25;
-                
+
                 this.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
-            
+
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(-15px) rotateX(0) rotateY(0)';
             });
         });
     }
-    // Create snow effect
-function createSnow() {
-    // Create container for snow
-    const snowContainer = document.createElement('div');
-    snowContainer.className = 'snow-container';
-    document.body.appendChild(snowContainer);
-    
-    // Number of snowflakes (adjust for performance)
-    const snowflakeCount = 75;
-    
-    // Create snowflakes
-    for (let i = 0; i < snowflakeCount; i++) {
-        createSnowflake(snowContainer);
+
+    // Snow effect
+    function createSnow() {
+        const snowContainer = document.createElement('div');
+        snowContainer.className = 'snow-container';
+        document.body.appendChild(snowContainer);
+
+        const SNOW_COUNT = 50;
+        for (let i = 0; i < SNOW_COUNT; i++) {
+            createSnowflake(snowContainer);
+        }
     }
-}
 
-// Create individual snowflake
-function createSnowflake(container) {
-    const snowflake = document.createElement('div');
-    snowflake.className = 'snowflake';
-    
-    // Random size between 2-6px
-    const size = Math.random() * 4 + 2;
-    snowflake.style.width = `${size}px`;
-    snowflake.style.height = `${size}px`;
-    
-    // Random horizontal position
-    const startPosition = Math.random() * 100;
-    snowflake.style.left = `${startPosition}vw`;
-    
-    // Random opacity
-    snowflake.style.opacity = Math.random() * 0.6 + 0.3;
-    
-    // Random fall duration between 10-20 seconds
-    const fallDuration = Math.random() * 10 + 10;
-    snowflake.style.animationDuration = `${fallDuration}s`;
-    
-    // Random delay before starting animation
-    snowflake.style.animationDelay = `${Math.random() * 5}s`;
-    
-    // Add slight horizontal drift animation
-    const horizontalDrift = Math.random() * 20 - 10;
-    snowflake.style.transform = `translateX(${horizontalDrift}px)`;
-    
-    // Add snowflake to container
-    container.appendChild(snowflake);
-    
-    // Reset snowflake when animation completes
-    snowflake.addEventListener('animationiteration', () => {
-        // Random new horizontal position
-        const newPosition = Math.random() * 100;
-        snowflake.style.left = `${newPosition}vw`;
-        
-        // Reset horizontal position
-        snowflake.style.transform = `translateX(0)`;
-        
-        // Random new horizontal drift
-        const newDrift = Math.random() * 20 - 10;
-        
-        // Animate the drift
-        snowflake.animate(
-            [
-                { transform: `translateX(0)` },
-                { transform: `translateX(${newDrift}px)` }
-            ],
-            {
-                duration: fallDuration * 1000,
-                easing: 'ease-in-out'
-            }
-        );
-    });
-}
+    function createSnowflake(container) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
 
-// Initialize snow effect when page loads
-window.addEventListener('load', createSnow);
-</script>
+        const size = Math.random() * 4 + 2;
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+
+        const startPosition = Math.random() * 100;
+        snowflake.style.left = `${startPosition}vw`;
+
+        snowflake.style.opacity = Math.random() * 0.6 + 0.3;
+
+        const fallDuration = Math.random() * 10 + 10;
+        snowflake.style.animationDuration = `${fallDuration}s`;
+        snowflake.style.animationDelay = `${Math.random() * 5}s`;
+
+        const horizontalDrift = Math.random() * 20 - 10;
+        snowflake.style.transform = `translateX(${horizontalDrift}px)`;
+
+        container.appendChild(snowflake);
+
+        snowflake.addEventListener('animationiteration', () => {
+            const newPosition = Math.random() * 100;
+            snowflake.style.left = `${newPosition}vw`;
+            snowflake.style.transform = `translateX(0)`;
+            const newDrift = Math.random() * 20 - 10;
+            // fallDuration is from closure
+            snowflake.animate(
+                [
+                    { transform: `translateX(0)` },
+                    { transform: `translateX(${newDrift}px)` }
+                ],
+                {
+                    duration: fallDuration * 1000,
+                    easing: 'ease-in-out'
+                }
+            );
+        });
+    }
+
+    window.addEventListener('load', createSnow);
+    </script>
 </head>
 <body>
+    <!-- Scroll progress bar (created dynamically too, but keep in DOM for better initial UX) -->
+    <div class="scroll-progress" aria-hidden="true"></div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <nav>
                 <div class="logo">Hackathon</div>
+                <div class="nav-links" aria-label="Main navigation">
+                    <a href="#games">Games</a>
+                    <a href="#features">Features</a>
+                    <a href="#contact">Contact</a>
+                </div>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1> Gaming <span> Hub </span></h1>
-        <h1>ADMIN <span>AKASH</span></h1>
-        <p>  </p>
-        <a href="#" class="cta-button">Explore our app's</a>
+    <section class="hero" role="banner" aria-label="Hero">
+        <h1>Gaming <span>Hub</span></h1>
+        <h2>Admin: AKASH — Welcome to our games collection</h2>
+        <p>Play simple, refreshing games — compete for top scores and join the community.</p>
+        <a href="#games" class="cta-button">Explore Our Apps</a>
     </section>
 
     <!-- Text Interface Section -->
-    <section class="text-interface">
+    <section class="text-interface" id="features">
         <div class="container">
             <div class="text-content">
                 <h2>Why Game With Us?</h2>
                 <div class="text-grid">
                     <div class="text-item">
                         <h3>Premium Selection</h3>
-                        <p>Access to the simple and easy games for refreshing your mind</p>
+                        <p>Access simple and easy games to refresh your mind.</p>
                     </div>
                     <div class="text-item">
                         <h3>Competitive Gaming</h3>
-                        <p>Join our games and just make your top score </p>
+                        <p>Join our games and climb the leaderboard — show off your high score!</p>
                     </div>
                     <div class="text-item">
                         <h3>Community Hub</h3>
-                        <p>Also comment your games by contacting me .</p>
+                        <p>Share feedback and contact us with ideas to improve the games.</p>
                     </div>
                 </div>
             </div>
@@ -995,248 +973,81 @@ window.addEventListener('load', createSnow);
     </section>
 
     <!-- Games Section -->
-    <section class="games-section">
+    <section class="games-section" id="games">
         <div class="container">
             <h2 class="section-title">Featured Games</h2>
+
             <div class="games-grid">
-                <!-- Game Card 1 -->
-                <div class="game-card">
-                    <div class="game-image"><img src="crozzyAdventure.png" alt="server error"></div>
+                <!-- Example game card 1 -->
+                <article class="game-card" aria-labelledby="game1-title">
+                    <div class="game-image" role="img" aria-label="Sample game artwork"></div>
                     <div class="game-content">
-                        <h3 class="game-title">Crozzy adventure</h3>
-                        <p class="game-desc">Just ready to fun with 3D games more responsive and pleasant</p>
+                        <div class="game-title" id="game1-title">Space Dodger</div>
+                        <div class="game-desc">Dodge obstacles and collect points to reach the top of the leaderboard.</div>
                         <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <a href="adventure.html" class="game-button">Play Now</a>
+                            <div class="game-rating" aria-hidden="true"><i class="fas fa-star"></i> 4.5</div>
+                            <a href="#" class="game-button">Play</a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Game Card 2 -->
-                <div class="game-card">
-                    <div class="game-image"><img src="flappyBall.png" alt="Server error ."></div>
+                <!-- Example game card 2 -->
+                <article class="game-card" aria-labelledby="game2-title">
+                    <div class="game-image" role="img" aria-label="Sample game artwork"></div>
                     <div class="game-content">
-                        <h3 class="game-title">Flappy ball</h3>
-                        <p class="game-desc">Just check your concentration of your mind this game. Try to balance ball if you can.</p>
+                        <div class="game-title" id="game2-title">Memory Match</div>
+                        <div class="game-desc">Train your brain with tile matching challenges—fast and addictive.</div>
                         <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <a href="flappyBall.html" class="game-button">Play Now</a>
+                            <div class="game-rating" aria-hidden="true"><i class="fas fa-star"></i> 4.7</div>
+                            <a href="#" class="game-button">Play</a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Game Card 3 -->
-                <div class="game-card">
-                    <div class="game-image"><img src="aiCross.png" alt="Server error."></div>
+                <!-- Example game card 3 -->
+                <article class="game-card" aria-labelledby="game3-title">
+                    <div class="game-image" role="img" aria-label="Sample game artwork"></div>
                     <div class="game-content">
-                        <h3 class="game-title">AI cross</h3>
-                        <p class="game-desc">ready to play your tic tac toe game with AI. Beat if you can.</p>
+                        <div class="game-title" id="game3-title">Puzzle Rush</div>
+                        <div class="game-desc">Solve puzzles under time pressure to test your speed and wit.</div>
                         <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="aiCross.html" class="game-button">Play Now</a>
+                            <div class="game-rating" aria-hidden="true"><i class="fas fa-star"></i> 4.6</div>
+                            <a href="#" class="game-button">Play</a>
                         </div>
                     </div>
-                </div>
-               <!-- Game Card 4 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="Screenshot 2025-09-01 083825.png" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">Shooting Range</h3>
-                        <p class="game-desc">Score as much as you can . Beat if you can.</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="Shooting Game.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-               <!-- Game Card 5 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title"></h3>
-                        <p class="game-desc">The updates and better version of Tic Tac Toe</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="1st.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-               <!-- Game Card 6 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">SOS</h3>
-                        <p class="game-desc">SOS</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="App-3.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-            
-<!-- Game Card 8 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">Guess The no.</h3>
-                        <p class="game-desc">Guess The No.</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="App1-1.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-<!-- Game Card 9 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">Car Game</h3>
-                        <p class="game-desc">Dodge The Cars</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="Car game beta.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-<!-- Game Card 10 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">Ecoimpact</h3>
-                        <p class="game-desc">Set Your Daily Goal's</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="Harsh.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-<!-- Game Card 11 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">Ping Pong</h3>
-                        <p class="game-desc">Play With your friend</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="Ping Pong.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Game Card 12 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">Space</h3>
-                        <p class="game-desc">Destroy The Asteroids</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="Space.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-                </div>
-<!-- Game Card 13 -->
-               <div class="game-card">
-                    <div class="game-image"><img src="" alt="Server error."></div>
-                    <div class="game-content">
-                        <h3 class="game-title">Cricket</h3>
-                        <p class="game-desc">Not that much cool but you can enjoy it.</p>
-                        <div class="game-meta">
-                            <div class="game-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <a href="Vishnu.html" class="game-button">Play Now</a>
-                        </div>
-                    </div>
-               </div>
-
+                </article>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Hackathon</h3>
-                    <p>Rajiv International School
-                    </p>
+                    <h3>About</h3>
+                    <p>Gaming Hub — simple browser games for quick breaks and friendly competition.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <a href="mailto:akash@example.com">akash@example.com</a>
+                    <p>Follow us</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
                     </div>
                 </div>
+            </div>
+
+            <div class="copyright">
+                &copy; <span id="year"></span> Gaming Hub. All rights reserved.
+            </div>
         </div>
     </footer>
-</body>
 
+    <script>
+        // Small runtime niceties
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
 </html>
