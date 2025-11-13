@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi-Tech Bhukkad Menu</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff7e6, #ffe4b5);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #ff3b3b;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .menu-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff3b3b;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 2px dotted #ddd;
+      font-size: 18px;
+    }
+
+    th {
+      background-color: #ff3b3b;
+      color: white;
+      font-size: 20px;
+    }
+
+    tr:hover {
+      background-color: #fff0e0;
+      transition: 0.3s;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+
+    .total-box {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 22px;
+      background: #fff8dc;
+      padding: 15px;
+      border-radius: 10px;
+      border: 2px solid #ff3b3b;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .payment-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .qr-image {
+      width: 180px;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .qr-image:hover {
+      transform: scale(1.05);
+    }
+
+    button {
+      background-color: #ff3b3b;
+      color: white;
+      padding: 10px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background-color: #ff6b6b;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 15px;
+      background-color: #ff3b3b;
+      color: white;
+      font-size: 18px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Popup QR view */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .popup img {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #fff;
+    }
+
+    .popup.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <header>🍔 Hi-Tech Bhukkad Menu 🍟</header>
+
+  <div class="menu-container">
+    <h2>Delicious Menu</h2>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Price (₹)</th>
+        <th>Quantity</th>
+      </tr>
+      <tr>
+        <td>Vada Pav</td>
+        <td>69</td>
+        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
+      </tr>
+      <tr>
+        <td>Vanilla Ice-Cream</td>
+        <td>20</td>
+        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
+      </tr>
+      <tr>
+        <td>Butterscotch Ice-Cream</td>
+        <td>30</td>
+        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
+      </tr>
+      <tr>
+        <td>Water Bottle</td>
+        <td>20</td>
+        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
+      </tr>
+      <tr>
+        <td>Coca Cola</td>
+        <td>30</td>
+        <td><input type="number" min="0" value="0" onchange="calculateTotal()"></td>
+      </tr>
+    </table>
+
+    <div class="total-box">
+      Total Amount: ₹<span id="total">0</span>
+    </div>
+
+    <div class="payment-section">
+      <h3>Scan to Pay</h3>
+      <img src="Harsh yadav.jpg" alt="QR Code" class="qr-image" onclick="showPopup()">
+      <br>
+      <button onclick="showPopup()">Pay Now</button>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button onclick="resetMenu()">Reset</button>
+    </div>
+  </div>
+
+  <footer>Thank you for visiting Hi-Tech Bhukkad! 💛</footer>
+
+  <div class="popup" id="popup">
+    <img src="Harsh yadav.jpg" alt="QR Code">
+  </div>
+
+  <script>
+    function calculateTotal() {
+      let prices = [69, 20, 30, 20, 30];
+      let inputs = document.querySelectorAll('input[type="number"]');
+      let total = 0;
+
+      for (let i = 0; i < prices.length; i++) {
+        total += prices[i] * parseInt(inputs[i].value || 0);
+      }
+
+      document.getElementById("total").textContent = total;
+    }
+
+    function resetMenu() {
+      document.querySelectorAll('input[type="number"]').forEach(i => i.value = 0);
+      document.getElementById("total").textContent = 0;
+    }
+
+    function showPopup() {
+      document.getElementById("popup").classList.add("active");
+    }
+
+    document.getElementById("popup").addEventListener("click", () => {
+      document.getElementById("popup").classList.remove("active");
+    });
+  </script>
+
+</body>
+</html>
